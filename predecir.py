@@ -3,6 +3,7 @@ import numpy as np
 import pyaudio
 import noisereduce as nr
 import entrenar 
+from entrenar import voz_recibido
 
 #Funcion para cargar audio del microfono
 def recibir_audio(duracion=3, sr=16000):
@@ -57,6 +58,7 @@ def ejecutar_comandos(comando):
 
         
 if __name__ == "__main__":
+    print('Comienza a jugar con tu voz :)')
     while True:
         audio, sr = recibir_audio()
         if audio is not None:
@@ -64,7 +66,9 @@ if __name__ == "__main__":
             comando = entrenar.reconocer(audio)
             if comando:
                 ejecutar_comandos(comando)
+                print(f'Ejecutando comando {voz_recibido}')
             else:
                 print(f'No se encontro el comando {comando}')
         else:
             print('Error en la grabacion del audio')
+            print('No se pudo jugar :(')

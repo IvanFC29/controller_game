@@ -38,7 +38,7 @@ Controlar un juego con la voz en lugar del teclado
 * Z - un salto
 * X - sacar espada
 
-### Texcnica utilizada
+### Tecnica utilizada
 Template Matching
 
 

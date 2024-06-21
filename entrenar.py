@@ -6,10 +6,10 @@ from scipy.spatial.distance import euclidean
 diccionario = ['Iniciar juego',
                'Abajo cubrete',
                'Avanza adelante',
-               'Atras regresa',
+               'Regresa Atras',
                'Golpe elevado',
                'Golpe directo',
-               'Un salto'
+               'Un salto',
                'Sacar espada']
      
 #carpetas de datos          
@@ -24,10 +24,14 @@ carpetas = [
     'datos/8'
 ]
 
+voz_recibido = 'no reconocido'
+
 #Funcion para cargar y extraer MFCC de un archivo de audio
 def extraer_frecuencia(file):
     audio, ratio = librosa.load(file, sr=None)
     mfcc = librosa.feature.mfcc(y=audio, sr= ratio, n_mfcc=13)
+    #Normalizacion
+    mfcc = (mfcc - mfcc.mean()) / mfcc.std()
     return mfcc
 
 def cargar_audios(carpetas, diccionario):
@@ -55,6 +59,7 @@ def distancia_euclediana(mfcc_1, mfcc_2):
     return euclidean(mfcc_1, mfcc_2)
 
 def reconocer(file):
+    global voz_recibido
     #Cargar plantillas y extraer caracteristicas
     plantillas = cargar_audios(carpetas, diccionario)
 
@@ -66,8 +71,11 @@ def reconocer(file):
         for mfcc_plantilla in mfcc_list:
             distancia = distancia_euclediana(entrada, mfcc_plantilla)
             if distancia < distancia_min:
+                #actualizar distancia
+                distancia_min = distancia
                 respuesta = comando
     
+    voz_recibido = respuesta
     return respuesta
 
 

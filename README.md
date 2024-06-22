@@ -29,14 +29,13 @@ Controlar un juego con la voz en lugar del teclado
 
 ## Comandos
 
-* Enter - Iniciar juego
-* flecha abajo - abajo cubrete
-* flecha derecha - avanza adelante
-* flecha izquiera - atras regresa
-* A - golpe elevado
-* S - golpe directo
-* Z - un salto
-* X - sacar espada
+* Space - Iniciar juego
+* w - abajo cubrete
+* d - avanzar derecha
+* a - avanzar izquierda
+* s - avanza adelante
+* Escape - Pausar juego
+
 
 ### Tecnica utilizada
 Template Matching

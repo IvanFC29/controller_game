@@ -5,12 +5,10 @@ from scipy.spatial.distance import euclidean
 #definir diccionario
 diccionario = ['Iniciar juego',
                'Abajo cubrete',
+               'Avanzar derecha',
+               'Avanzar izquierda',
                'Avanza adelante',
-               'Regresa Atras',
-               'Golpe elevado',
-               'Golpe directo',
-               'Un salto',
-               'Sacar espada']
+               'Pausar juego']
      
 #carpetas de datos          
 carpetas = [
@@ -19,9 +17,7 @@ carpetas = [
     'plantillas/3',
     'plantillas/4',
     'plantillas/5',
-    'plantillas/6',
-    'plantillas/7',
-    'plantillas/8'
+    'plantillas/6'
 ]
 
 #Funcion para cargar y extraer MFCC de un archivo de audio
@@ -78,8 +74,10 @@ def reconocer(audio, sr=16000):
 
     return respuesta
 
-
+""""
 if __name__ == '__main__':
     test_file = "test_audio.wav"
     comando = reconocer(test_file)
     print(f'El comando es: {comando}')
+    
+"""

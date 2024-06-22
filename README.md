@@ -16,7 +16,7 @@ Controlar un juego con la voz en lugar del teclado
 
 * scypy
 * numpy
-> pip install numpy
+(Al instalar librosa se instala scypy y numpy)
 
 * noisereduce
 > pip install noisereduce
@@ -41,4 +41,5 @@ Controlar un juego con la voz en lugar del teclado
 ### Tecnica utilizada
 Template Matching
 
-
+### Versiones
+Python 3.9.6

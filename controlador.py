@@ -1,12 +1,11 @@
-import pyautogui as ag
-import numpy as np
-import pyaudio
-import noisereduce as nr
 import entrenar 
-from entrenar import voz_recibido
+import pyautogui as ag
+import noisereduce as nr
+import pyaudio
+import numpy as np
 
 #Funcion para cargar audio del microfono
-def recibir_audio(duracion=3, sr=16000):
+def cargar_audio(duracion=3, sr=16000):
     try: 
         p = pyaudio.PyAudio()
         stream = p.open(format=pyaudio.paInt16, channels=1, rate=sr, input=True, frames_per_buffer=1024)
@@ -23,26 +22,27 @@ def recibir_audio(duracion=3, sr=16000):
         p.terminate()
     
         audio_data = np.frombuffer(b''.join(frames), dtype=np.int16)
-        return audio_data, sr
+        return audio_data
     except Exception as e:
        print(f'error al grabar audio{e}')
-       return None, sr
-        
+       return None
+   
 #Funcion para reducir ruido
 def reducir_ruido(audio_data, sr):
     try:
         reducido = nr.reduce_noise(y=audio_data, sr=sr)
+        print('Se redujo ruido del entorno...')
         return reducido
     except Exception as e:
-        print(f'error al reducir el ruido {e}')
+        print(f'No hubo ruido que reducir {e}')
         return audio_data
-
+    
 #Funcion para ejecutar comandos
 def ejecutar_comandos(comando):
     comandos = {
         'iniciar juego': 'enter',
         'avanza adelante': 'right',
-        'atras regresa': 'left',
+        'regresa atras': 'left',
         'abajo cubrete': 'down',
         'golpe elevado': 'a',
         'golpe directo': 's',
@@ -53,22 +53,23 @@ def ejecutar_comandos(comando):
     tecla = comandos.get(comando.lower())
     if tecla:
         ag.press(tecla)
+        print(f'Se presiono tecla {tecla}')
     else:
         print(f'El comando "{comando}" no fue encontrado')
 
-        
+
 if __name__ == "__main__":
     print('Comienza a jugar con tu voz :)')
     while True:
-        audio, sr = recibir_audio()
-        if audio is not None:
-            audio = reducir_ruido(audio, sr)
-            comando = entrenar.reconocer(audio)
+        entrada = cargar_audio()
+        if entrada is not None:
+            audio = reducir_ruido(entrada, 16000)
+            comando = entrenar.reconocer(audio,sr=16000)
+            print(comando)
+            print(f'Ejecutando comando {comando}')
             if comando:
                 ejecutar_comandos(comando)
-                print(f'Ejecutando comando {voz_recibido}')
             else:
                 print(f'No se encontro el comando {comando}')
         else:
-            print('Error en la grabacion del audio')
-            print('No se pudo jugar :(')
+            print('No se capturo nada con el microfono')

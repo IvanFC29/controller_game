@@ -14,21 +14,23 @@ diccionario = ['Iniciar juego',
      
 #carpetas de datos          
 carpetas = [
-    'datos/1',
-    'datos/2',
-    'datos/3',
-    'datos/4',
-    'datos/5',
-    'datos/6',
-    'datos/7',
-    'datos/8'
+    'plantillas/1',
+    'plantillas/2',
+    'plantillas/3',
+    'plantillas/4',
+    'plantillas/5',
+    'plantillas/6',
+    'plantillas/7',
+    'plantillas/8'
 ]
 
-voz_recibido = 'no reconocido'
-
 #Funcion para cargar y extraer MFCC de un archivo de audio
-def extraer_frecuencia(file):
-    audio, ratio = librosa.load(file, sr=None)
+def extraer_frecuencia(file, sr=16000):
+    if isinstance(file, str):
+        audio, ratio = librosa.load(file, sr=None)
+    else:
+        audio = file.astype(float)
+        ratio = sr
     mfcc = librosa.feature.mfcc(y=audio, sr= ratio, n_mfcc=13)
     #Normalizacion
     mfcc = (mfcc - mfcc.mean()) / mfcc.std()
@@ -58,12 +60,11 @@ def distancia_euclediana(mfcc_1, mfcc_2):
     mfcc_2 = mfcc_2[:, :min_length].flatten()
     return euclidean(mfcc_1, mfcc_2)
 
-def reconocer(file):
-    global voz_recibido
+def reconocer(audio, sr=16000):
     #Cargar plantillas y extraer caracteristicas
     plantillas = cargar_audios(carpetas, diccionario)
 
-    entrada = extraer_frecuencia(file)
+    entrada = extraer_frecuencia(audio, sr)
     distancia_min = float('inf')
     
     respuesta = None
@@ -74,8 +75,7 @@ def reconocer(file):
                 #actualizar distancia
                 distancia_min = distancia
                 respuesta = comando
-    
-    voz_recibido = respuesta
+
     return respuesta
 
 

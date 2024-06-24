@@ -24,8 +24,8 @@ Controlar un juego con la voz en lugar del teclado
 * pyaudio
 > pip install pyaudio 
 
-* pyautogui
-> pip install pyautogui
+* pynput
+> pip install pynput
 
 ## Comandos
 
@@ -42,3 +42,8 @@ Template Matching
 
 ### Versiones
 Python 3.9.6
+
+### Recursos
+Enlace del juego utilizado para el proyecto:
+[Github](https://github.com/faqcjs/simon-dice-tkinter)
+

@@ -2,22 +2,22 @@ import os
 import librosa
 from scipy.spatial.distance import euclidean
 
-#definir diccionario
-diccionario = ['Iniciar juego',
-               'Abajo cubrete',
-               'Avanzar derecha',
-               'Avanzar izquierda',
-               'Avanza adelante',
-               'Pausar juego']
-     
-#carpetas de datos          
+# Definir diccionario
+diccionario = [
+    'Presionar verde',
+    'Presionar rojo',
+    'Presionar amarillo',
+    'Presionar azul',
+    'Iniciar juego'
+]
+
+# Carpetas de datos          
 carpetas = [
-    'plantillas/1',
-    'plantillas/2',
-    'plantillas/3',
-    'plantillas/4',
-    'plantillas/5',
-    'plantillas/6'
+    'plantillas/verde',
+    'plantillas/rojo',
+    'plantillas/amarillo',
+    'plantillas/azul',
+    'plantillas/inicio'
 ]
 
 #Funcion para cargar y extraer MFCC de un archivo de audio
@@ -74,10 +74,9 @@ def reconocer(audio, sr=16000):
 
     return respuesta
 
-""""
+"""
 if __name__ == '__main__':
-    test_file = "test_audio.wav"
+    test_file = "audio.wav"
     comando = reconocer(test_file)
     print(f'El comando es: {comando}')
-    
 """

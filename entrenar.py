@@ -8,7 +8,8 @@ diccionario = [
     'Presionar rojo',
     'Presionar amarillo',
     'Presionar azul',
-    'Iniciar juego'
+    'Iniciar juego',
+    'Guardar Jugador'
 ]
 
 # Carpetas de datos          
@@ -17,7 +18,8 @@ carpetas = [
     'plantillas/rojo',
     'plantillas/amarillo',
     'plantillas/azul',
-    'plantillas/inicio'
+    'plantillas/inicio',
+    'plantillas/jugador'
 ]
 
 #Funcion para cargar y extraer MFCC de un archivo de audio

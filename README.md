@@ -29,12 +29,12 @@ Controlar un juego con la voz en lugar del teclado
 
 ## Comandos
 
-* Space - Iniciar juego
-* w - abajo cubrete
-* d - avanzar derecha
-* a - avanzar izquierda
-* s - avanza adelante
-* Escape - Pausar juego
+* Enter- Iniciar juego
+* a - Presionar azul
+* r - Presionar rojo
+* m - Presionar amarillo
+* v - Presionar verde
+* Control - Guardar jugador
 
 
 ### Tecnica utilizada
